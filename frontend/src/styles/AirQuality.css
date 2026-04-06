@@ -1,0 +1,82 @@
+.air-quality-container {
+  width: 97%;
+  padding: 24px;
+  background: linear-gradient(135deg, #f6f9fc, #eef2f7);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* Header */
+
+.air-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.air-header h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* AQI Badge */
+
+.aqi-badge {
+  padding: 8px 16px;
+  border-radius: 50px;
+  background: #22c55e;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Grid */
+
+.aq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 18px;
+  padding-top: 10px;
+}
+
+/* Cards */
+
+.aq-card {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+  padding: 18px;
+  border-radius: 14px;
+  text-align: center;
+  transition: 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.aq-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+/* Card text */
+
+.aq-card span {
+  display: block;
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.aq-card strong {
+  font-size: 20px;
+  color: #111827;
+}
+
+/* Time */
+
+.aq-time {
+  margin-top: 20px;
+  text-align: right;
+  font-size: 12px;
+  color: #9ca3af;
+}

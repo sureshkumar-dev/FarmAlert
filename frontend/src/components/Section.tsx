@@ -1,21 +1,24 @@
 import type { JSX } from "react";
 import "@/styles/Section.css";
+import { Link } from "react-router-dom";
 import Leaf_logo from "@/assets/leaf-solid-full.svg";
 import Green_leaf from "@/assets/farm_logo.png";
 import Detect_logo from "@/assets/camera_logo.png";
-import Admin_logo from "@/assets/bar_logo.png";
+import Admin_logo from "@/assets/folder_open_50dp_44A635_FILL0_wght400_GRAD0_opsz48.png";
 import Button_primary from "@/components/Button_primary";
 import { useContext } from "react";
 import { Langcontext } from "@/App";
 import { Langdata } from "@/Locales/language";
+import { useNavigate } from "react-router-dom";
 
 
 function Section(): JSX.Element {
+    const navigate = useNavigate();
     const mozhi = useContext(Langcontext)
     const text = Langdata[mozhi.translation]
     return (
         <>
-            <section>
+            <section className="section-home">
                 <div className="Hero_section">
                     <div className="Headline">
                         <img style={{ height: "25px", width: "auto" }} src={Leaf_logo} alt="leaf logo" />
@@ -31,8 +34,12 @@ function Section(): JSX.Element {
                     </div>
                     
                     <div className="Button_section">
+                        <Link to={("/select-service")}>
                         <Button_primary text={text.btn1} bgcolor="#44a635" textcolor="#ffffff" bordercolor="#44a635" width="180px" />
+                        </Link>
+                        <Link to={("/ai-scan")}>
                         <Button_primary text={text.btn2} bgcolor="white" textcolor="#2e7923" bordercolor="#2e7923" width="180px" />
+                        </Link>
                     </div>
 
 
@@ -48,7 +55,10 @@ function Section(): JSX.Element {
                                 <p className="Panel_pg">{text.panel_desc11}</p>
                                 <p className="Panel_pg">{text.panel_desc12}</p>
                             </div>
-                            <Button_primary text={text.get_start} bgcolor="#44a635" textcolor="#ffffff" bordercolor="#44a635" width="90%" />
+                            
+                                                        <Button_primary pathname="/select-service" text={text.get_start} bgcolor="#44a635" textcolor="#ffffff" bordercolor="#44a635" width="90%" />
+                            
+
                         </div>
                     </div>
                     <div className="Detection_panel">
@@ -61,7 +71,9 @@ function Section(): JSX.Element {
                                 <p className="Panel_pg">{text.panel_desc21}</p>
                                 <p className="Panel_pg">{text.panel_desc22}</p>
                             </div>
-                            <Button_primary text="Get Started" bgcolor="#44a635" textcolor="#ffffff" bordercolor="#44a635" width="90%" />
+                            
+                            <Button_primary pathname="/ai-scan" text="Get Started" bgcolor="#44a635" textcolor="#ffffff" bordercolor="#44a635" width="90%" />
+                            
                         </div>
                     </div>
                     <div className="Admin_panel">
@@ -74,7 +86,9 @@ function Section(): JSX.Element {
                                 <p className="Panel_pg">{text.panel_desc31}</p>
                                 <p className="Panel_pg">{text.panel_desc32}</p>
                             </div>
-                            <Button_primary text={text.get_start} bgcolor="#44a635" textcolor="#ffffff" bordercolor="#44a635" width="90%" />
+                            
+                            <Button_primary pathname="/docs" text={text.get_start} bgcolor="#44a635" textcolor="#ffffff" bordercolor="#44a635" width="90%" />
+                            
                         </div>
                     </div>
                 </div>

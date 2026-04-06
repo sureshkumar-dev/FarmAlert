@@ -1,0 +1,36 @@
+.account-container {
+    padding: 20px;
+    width: 370px;
+    margin-top: 100px;
+    height: 400px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    
+    
+}
+
+.profile-section {
+    margin-top: 50px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.account-actions button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: #00a63d;
+    border: 2px solid #00a63d;
+    color: white;
+    cursor: pointer;
+    
+}

@@ -1,0 +1,263 @@
+.Account{
+    width: 100%;
+    height: 100vh;
+    background-color: brown;
+    display: flex;
+    position: relative;
+}
+.close_icon{
+  position: absolute;
+  top:10px;
+  left:10px;
+}
+.swap_lang{
+  height: 30px;
+  width: 100px;
+  border-radius: 25px;
+  position: absolute;
+  background-color: #16a34a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  
+}
+.english{
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 15px;
+  margin-left: 5px;
+  position: absolute;
+  font-weight: 700;
+}
+.tamil{
+  padding-right:15px ;
+  padding-left: 15px;
+  border-radius: 15px;
+  margin-left: 5px;
+  position: absolute;
+  right: 5px;
+  font-weight: 700;
+}
+.Left_side{
+    width: 50%;
+    height: 100%;
+    background-color: #146132;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 5%;
+    color: white;
+}
+.Right_side{
+    background-color: #ffffff;
+    width: 50%;
+    display: grid;
+  place-items: center;
+
+    
+
+}
+
+
+/* Page Background */
+.register-page {
+  min-height: 100vh;
+  background: #f3f4f6; /* light grey like your screenshot */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+}
+
+/* Card Container */
+.register-container {
+  width: max-content;
+  background: #ffffff;
+  padding: 8px 28px;
+  border-radius: 16px;
+  
+}
+
+/* Title */
+.register-container h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+/* Subtitle */
+.register-container p {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 22px;
+}
+
+/* Labels */
+.register-container label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  display: block;
+  margin-bottom: 6px;
+  margin-top: 14px;
+}
+
+/* Inputs */
+.register-container input {
+  width: 450px;
+  height: 47px;
+  border-radius: 10px;
+  padding-left: 5px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  font-size: medium;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.register-container input:focus {
+  border-color: #16a34a;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.15);
+}
+
+/* Create Account Button */
+.create-btn {
+  width: 100%;
+  margin-top: 22px;
+  padding: 13px;
+  border: none;
+  border-radius: 12px;
+  background: #16a34a; /* green button like screenshot */
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.create-btn:hover {
+  background: #15803d;
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.divider span {
+  padding: 0 10px;
+}
+
+/* Google Button */
+.google-btn {
+  width: 100%;
+  padding: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.google-btn:hover {
+  background: #f9fafb;
+}
+
+/* Sign in text */
+.signin-text {
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 18px;
+}
+
+.signin-text a {
+  color: #16a34a;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signin-text a:hover {
+  text-decoration: underline;
+}
+
+/* Terms text */
+.terms {
+  font-size: 12px;
+  color: #9ca3af;
+  text-align: center;
+  margin-top: 14px;
+  line-height: 1.5;
+}
+.Left_title{
+    display: flex;
+    align-items: center;
+    width:max-content;
+    column-gap: 10px;
+    padding-top: 70px;
+    
+}
+.Desc_left{
+    width: 450px;
+    padding-top: 20px;
+}
+.Left_logo{
+    height: 40px;
+    width: auto;
+    padding: 5px;
+    background-color: #C9F0D7;
+    border-radius: 10px;
+}
+.Fealogo{
+    height: 30px;
+    width: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #19803f;
+}
+.ip_right{
+    height: 47px;
+    width:440px;
+    border-radius: 10px;
+    border: none;
+    border: 1px solid #717171;
+    font-size: medium;
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
+.Fea1,.Fea2,.Fea3{
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+    padding-bottom: 30px;
+}
+.Input_sec{
+    width: max-content;
+}
+.Secondary{
+    width: max-content;
+}
+

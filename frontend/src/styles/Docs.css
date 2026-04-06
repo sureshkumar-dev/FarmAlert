@@ -1,0 +1,183 @@
+.docs {
+    background-color: rgb(255, 255, 255);
+    height: max-content;
+    padding-top: 100px;
+    padding-bottom: 70px;
+}
+
+.web_info {
+    background-color: rgb(255, 255, 255);
+    width: 500px;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    padding: 20px;
+}
+
+.hero {
+    display: flex;
+    column-gap: 30px;
+    padding-top: 40px;
+    justify-content: center;
+}
+
+.image_div {
+    height: 300px;
+    width: auto;
+}
+
+.web_info h1 {
+    font-size: 50px;
+    line-height: 60px;
+}
+
+.web_info h4 {
+    font-size: small;
+    font-weight: 400;
+}
+
+.crop1 {
+    height: 320px;
+    width: auto;
+    border-radius: 15px;
+}
+
+.btn-docs-1 {
+    width: max-content;
+    display: flex;
+    column-gap: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #44a635;
+    align-items: center;
+    font-size: medium;
+    font-weight: 600;
+    color: white;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.project_docs {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    padding-top: 60px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.project_docs h4 {
+    font-weight: 500;
+}
+
+.doc_flex {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    column-gap: 50px;
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+
+.flex_logo-1 {
+    padding: 10px;
+    background-color: #fef0f0;
+    height: 35px;
+    border-radius: 10px;
+    position: absolute;
+    left: 20px;
+}
+
+.flex_logo-2 {
+    padding: 10px;
+    background-color: #fef7eb;
+    height: 35px;
+    border-radius: 10px;
+    position: absolute;
+    left: 20px;
+}
+
+.flex_logo-3 {
+    padding: 10px;
+    background-color: #eff5fe;
+    height: 35px;
+    border-radius: 10px;
+    position: absolute;
+    left: 20px;
+}
+
+.card-doc {
+    height: 210px;
+    width: 250px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    padding: 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    cursor: pointer;
+}
+
+.card-doc:hover {
+    transform: scale(1.04);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-doc h4 {
+    position: absolute;
+    top: 90px;
+    font-weight: 600;
+}
+
+.card-doc h5 {
+    position: absolute;
+    top: 110px;
+}
+
+.doc-btn-div {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.btn-docs {
+    height: max-content;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+    align-items: center;
+    font-size: medium;
+    background-color: #44a635;
+    border: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 600;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn-docs-2 {
+    cursor: pointer;
+    height: max-content;
+    border: none;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+    align-items: center;
+    font-size: medium;
+    background-color: #f2f3f5;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 600;
+    border-radius: 10px;
+
+}

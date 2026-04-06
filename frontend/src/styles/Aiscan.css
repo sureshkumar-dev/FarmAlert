@@ -1,0 +1,197 @@
+.ai_scan {
+    padding-top: 100px;
+    background-color: rgb(255, 255, 255);
+    min-height: 100vh;
+}
+
+.dropdown {
+    position: absolute;
+    margin-top: 8px;
+    max-height: 180px;
+    overflow-y: auto;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    z-index: 10;
+    width: 600px;
+    padding: 5px 0;
+}
+
+/* each item */
+.dropdown li {
+    list-style: none;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 14px;
+
+
+}
+
+/* hover effect */
+.dropdown li:hover {
+    background: #f0fdf4;
+    /* light green */
+}
+
+/* selected feel (optional future use) */
+.dropdown li.active {
+    background: #dcfce7;
+    font-weight: 500;
+}
+
+.head_div {
+    padding-top: 5px;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 20px;
+}
+.ip-img{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+
+}
+.head_div h1 {
+    font-weight: 600;
+}
+
+.head_div p {
+    font-weight: 400;
+    color: gray;
+}
+
+.h3-scan {
+    padding-top: 10px;
+    font-weight: 500;
+    padding-bottom: 5px;
+}
+
+.ip-scan h4 {
+    font-weight: 500;
+    padding-bottom: 5px;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.headlogo {
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #dbfce7;
+    height: 35px;
+    width: auto;
+}
+
+.card {
+    height: max-content;
+    width: 600px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.btn-div {
+    display: flex;
+    justify-content: center;
+    column-gap: 15px;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.btn-upload {
+    height: 40px;
+    width: max-content;
+    padding: 10px;
+    font-size: medium;
+    display: flex;
+    align-items: center;
+    border: 1px solid #44a635;
+    border-radius: 10px;
+    color: #44a635;
+    background-color: white;
+    font-weight: 500;
+}
+
+.btn-cam {
+    height: 40px;
+    width: 200px;
+    padding: 10px;
+    font-weight: 500;
+    color: white;
+    
+    background-color: #44a635;
+    border-radius: 10px;
+    font-size: medium;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+    border: 1px solid #44a635;
+    padding-right: 10px;
+}
+
+.scanner {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dotted green;
+    position: relative;
+    border-radius: 15px;
+}
+
+.ip-scan {
+    padding-top: 20px;
+    position: relative;
+    
+}
+
+.btn-scan-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+    height: 38px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.btn-scan-2 {
+    text-align: center;
+    height: 43px;
+    width: 100%;
+    font-size: large;
+    font-weight: 500;
+    border-radius: 10px;
+    border: none;
+    background: hsla(126, 98%, 24%, 1);
+    background: linear-gradient(90deg, hsla(126, 98%, 24%, 1) 0%, hsla(118, 25%, 50%, 1) 100%);
+    background: -moz-linear-gradient(90deg, hsla(126, 98%, 24%, 1) 0%, hsla(118, 25%, 50%, 1) 100%);
+    background: -webkit-linear-gradient(90deg, hsla(126, 98%, 24%, 1) 0%, hsla(118, 25%, 50%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#017B0D", endColorstr="#63A061", GradientType=1);
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    justify-content: center;
+}
+.result{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: gray;
+    padding-bottom: 50px;
+}

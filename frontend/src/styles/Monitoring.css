@@ -1,0 +1,248 @@
+.monitoring {
+    background-color: #f5f7f9;
+}
+
+.monitoring h1,
+h3,
+h4,
+h5 {
+    font-weight: 500;
+}
+
+.monitoring h2 {
+    font-weight: 600;
+}
+
+.farm_info {
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.info_cards {
+    padding-top: 10px;
+    padding-bottom: 25px;
+    display: grid;
+    width: 100%;
+    height: 80px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    gap: 20px;
+    grid-template-columns: repeat(5, 1fr);
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+}
+
+.info_card {
+    position: relative;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+.info_p {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+}
+
+.info_h3 {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+}
+
+.monitor_section {
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 100px;
+    height: max-content;
+
+}
+
+.monitor_cards {
+    margin-top: 20px;
+    height: max-content;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    width: 100%;
+    background-color: rgba(0, 255, 255, 0);
+    column-gap: 80px;
+    row-gap: 30px;
+    padding-bottom: 35px;
+}
+
+.monitor_card {
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+
+}
+
+.mon_warning {
+    padding: 2px;
+    border-radius: 25px;
+    background-color: #d3f9d8;
+    text-align: center;
+    font-size: 13px;
+    color: #388b2b;
+    width: max-content;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.graph {}
+
+.monitor_logo {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.monitor_alert {
+    padding-bottom: 25px;
+    padding-top: 30px;
+}
+
+.disease-section {
+    margin-top: 40px;
+    margin-left: 25px;
+}
+
+.disease-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.disease-card {
+    width: 220px;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.disease-img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.alert_cards {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    background-color: #d3f9d800;
+    width: 100%;
+    height: 140px;
+    color: white;
+
+}
+
+.alert_card {
+    border-radius: 15px;
+    padding: 20px;
+
+    overflow-y: auto;
+
+
+}
+
+.alert_card h3 {
+    font-size: x-large;
+    font-weight: 600;
+}
+
+.fertilizer-section {
+    margin-top: 30px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 20px;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.fertilizer-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.fertilizer-card {
+    flex: 1;
+    min-width: 280px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    border-top: 4px solid #2f7d32;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: 0.3s ease;
+}
+
+.fertilizer-card:hover {
+    transform: translateY(-3px);
+}
+
+.fertilizer-card h3 {
+    color: #2f7d32;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.fertilizer-card p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.fertilizer-card span {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.fertilizer-card button {
+    width: 100%;
+    padding: 12px;
+    background: #2f7d32;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.fertilizer-card button:hover {
+    background: #256428;
+}
+
+.close {
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+}
+
+.close button {
+    padding: 10px;
+    width: 300px;
+    background-color: #44a635;
+    font-size: larger;
+    color: white;
+    float: right;
+    padding-right: 25px;
+    border: none;
+    border-radius: 10px;
+
+}

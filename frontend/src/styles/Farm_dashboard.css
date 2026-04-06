@@ -1,0 +1,206 @@
+.farm-dash{
+    margin-top: -10px;
+    background-color: #ffffff;
+    height: 100vh;
+}
+.welcome{
+    margin-top: 100px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 40px;
+    display: flex;
+    column-gap: 10px;
+
+}
+.welcome h1{
+    font-weight: 500;
+}
+.QuickSec {
+    height: max-content;
+    max-width: 1400px;
+    width: 100%;
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.btn-quick-1 {
+    font-size: 16px;
+    font-weight: 450;
+    letter-spacing: 0.4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    width: max-content;
+    border-radius: 5px;
+    background-color: #00a63d;
+    border: 2px solid #00a63d ;
+    color: white;
+    cursor: pointer;
+    padding-right: "10px";
+}
+
+.btn-quick-2 {
+    background-color: #f0fff4;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 450;
+    letter-spacing: 0.4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    width: max-content;
+    border-radius: 5px;
+    border: 2px solid #44a635;
+    color: #00a63d ;
+}
+.btn-quick-1:hover{
+    background-color: #327727;
+}
+.btn-quick-2:hover{
+   border: 2px solid black;
+}
+.analyze {
+    height: 140px;
+    width: 1435px;
+    display: grid;
+    gap: 100px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+
+.grid_cards {
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.card-h3{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-weight: 400;
+}
+.card-h4{
+    position: absolute;
+    bottom: 25px;
+    left: 15px;
+    font-weight: 400;
+}
+.count{
+    position: absolute;
+    left: 15px;
+    top: 45px;
+    font-size: xx-large;
+    font-weight: 600;
+}
+.cardlogo{
+    position: absolute;
+    top: 15px;
+    right: 30px;
+}
+.regFarms{
+    width: 1435px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    position: relative;
+}
+.farm_cards{
+    width: 1435px;
+    background-color: #00a63d00;
+    height: max-content;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 100px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.dynamic_card{
+    height: 250px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+.dynamic_card:hover{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+.dynamic_card h2{
+    font-weight: 400;
+}
+.card_cont{
+    padding-left: 20px;
+    padding-top: 20px;
+}
+.card_cont h4,h5{
+    font-weight: 400;
+}
+.card_cont h4{
+    color: gray;
+}
+.card_cont h5{
+    font-weight: 500;
+    font-size: medium;
+}
+.vd_btn{
+    height: 30px;
+    width: 580px;
+    background-color: #327727;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 7px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+    color: white;
+}
+.dn_btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+    position: absolute;
+    bottom: 20px;
+    width: max-content;
+}
+.del_btn{
+    height: 30px;
+    width: 35px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.dn_grid{
+    padding-top: 15px;
+    display: grid;
+    width: 90%;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(2,1fr);
+    gap: 30px;
+}
+
