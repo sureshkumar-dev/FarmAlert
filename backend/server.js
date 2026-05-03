@@ -1,3 +1,4 @@
+
 import express from "express";
 import mongoose from "mongoose"
 import cors from "cors";
@@ -9,17 +10,27 @@ import jwt from "jsonwebtoken"
 import dotenv from "dotenv"
 import farmermodel from "./models/farmermodel.js";
 import sendSMS from "./utils/sendsms.js";
+import multer from "multer";
+import sharp from "sharp";
+import axios from "axios";
+import https from "https";
 dotenv.config();
 const app = express();
 app.use(express.json())
 app.use(cors({
-    origin: "http://localhost:5173"
+    origin: "http://localhost:5173",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
 app.use("/auth", authroute)
 app.use("/farm", route)
 mongoose.connect(process.env.MONGO_URI)
     .then(() => { console.log("db connected") })
-    .catch((error) => console.log(error))
+    .catch((error) => {
+        console.log("DB ERROR:", error)
+    })
 app.get("/", (req, res) => {
     res.send("Server  started")
     console.log(req.url);
@@ -80,6 +91,51 @@ app.get("/farm/all", async (req, res) => {
         return res.status(500).json({ message: "Server error" });
     }
 });
+
+
+const upload = multer({ dest: "uploads/" });
+
+app.post("/predict", upload.single("image"), async (req, res) => {
+  try {
+
+    if (!req.file) {
+      return res.status(400).json({ error: "No image uploaded" });
+    }
+
+    const image = req.file.path;
+
+    const { dominant } = await sharp(image).stats();
+
+    let disease = "Healthy Plant";
+
+    // Yellow Disease
+    if (dominant.r > 180 && dominant.g > 180 && dominant.b < 120) {
+      disease = "Yellow Leaf Disease";
+    }
+
+    // Leaf Spot Disease
+    else if (dominant.r > 140 && dominant.g < 120 && dominant.b < 120) {
+      disease = "Leaf Spot Disease";
+    }
+
+    // Healthy
+    else if (dominant.g > 140 && dominant.r < 140) {
+      disease = "Healthy Plant";
+    }
+
+    res.json({
+      disease: disease,
+      rgb: dominant
+    });
+
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      error: "Prediction failed"
+    });
+  }
+});
 app.get("/farm/monitor/:id", async (req, res) => {
     try {
         const token = req.headers.authorization;
@@ -104,11 +160,47 @@ app.get("/farm/monitor/:id", async (req, res) => {
         })
     }
 })
-app.post("/sent-alert", async (req, res) => {
+app.get("/weather", async (req, res) => {
+    try {
+
+        const { lat, lon } = req.query;
+
+        const response = await fetch(
+            `https://api.weatherapi.com/v1/forecast.json?key=${process.env.WEATHER_KEY}&q=${lat},${lon}&days=3&aqi=yes&alerts=yes`
+        );
+
+        const data = await response.json();
+
+        res.json(data);
+
+    } catch (error) {
+        console.log("WEATHER ERROR:", error);
+        res.status(500).json(error);
+    }
+});
+app.get("/weather-3day", async (req, res) => {
+    try {
+
+        const { lat, lon } = req.query
+
+        const response = await fetch(
+            `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min&hourly=temperature_2m,relative_humidity_2m,precipitation,cloud_cover,wind_speed_10m,soil_moisture_0_to_1cm&forecast_days=3`
+        )
+
+        const data = await response.json()
+
+        res.json(data)
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+app.post("/sent-alerts", async (req, res) => {
     const { phone, message } = req.body;
     console.log("ALERT ROUTE HIT")
 
-    
+
 
     console.log("PHONE:", phone)
     console.log("MESSAGE:", message)

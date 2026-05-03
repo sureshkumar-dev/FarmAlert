@@ -46,7 +46,7 @@ authroute.post("/signin", async (req, res) => {
         const token = jwt.sign(
             { id: userdata._id },
             process.env.TOKEN_SECRET,
-            { expiresIn: "7d" }
+            { expiresIn: "30d" }
         )
 
         res.json({

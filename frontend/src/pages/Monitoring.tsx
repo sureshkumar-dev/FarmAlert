@@ -126,12 +126,16 @@ function Monitoring(): JSX.Element {
         }
 
     }
-    const fetchtemp = async () => {
-        try {
 
-            const lat = farmdata[0]?.latitude;
-            const lan = farmdata[0]?.longitude;
-            const res = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lan}&hourly=temperature_2m,relative_humidity_2m,precipitation,precipitation_probability,soil_moisture_9_to_27cm,wind_speed_10m,cloud_cover,dew_point_2m&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,cloud_cover,wind_speed_10m,snowfall,showers`)
+    const fetchtemp = async () => {
+        console.log("fetched")
+        try {
+            const lat = farmdata?.[0]?.latitude;
+            const lan = farmdata?.[0]?.longitude;
+
+            console.log("LAT:", lat)
+            console.log("LON:", lan)
+            const res = await axios.get(`http://localhost:5000/weather?lat=${lat}&lon=${lan}`)
             console.log(res.data)
             const resair = await axios.get(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lan}&current=us_aqi,pm2_5,pm10,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone,dust`)
             console.log(resair.data)
@@ -141,16 +145,35 @@ function Monitoring(): JSX.Element {
                 const slice = arr.slice(start, end)
                 return slice.reduce((a: any, b: any) => a + b, 0) / slice.length
             }
-            const threeday = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lan}&daily=apparent_temperature_max,temperature_2m_max,rain_sum,wind_speed_10m_max,precipitation_hours,precipitation_probability_max,et0_fao_evapotranspiration,shortwave_radiation_sum,wind_direction_10m_dominant,wind_gusts_10m_max,showers_sum,snowfall_sum,precipitation_sum,sunrise,sunset,daylight_duration,sunshine_duration,uv_index_max,uv_index_clear_sky_max,weather_code,temperature_2m_min,apparent_temperature_min&hourly=soil_moisture_27_to_81cm,soil_moisture_9_to_27cm,soil_moisture_3_to_9cm,soil_moisture_1_to_3cm,soil_moisture_0_to_1cm,soil_temperature_54cm,soil_temperature_18cm,soil_temperature_6cm,soil_temperature_0cm,temperature_180m,temperature_120m,temperature_80m,wind_gusts_10m,wind_direction_180m,wind_direction_120m,wind_direction_80m,wind_direction_10m,wind_speed_180m,wind_speed_120m,wind_speed_80m,wind_speed_10m,weather_code,pressure_msl,surface_pressure,cloud_cover,cloud_cover_mid,cloud_cover_low,cloud_cover_high,visibility,evapotranspiration,et0_fao_evapotranspiration,vapour_pressure_deficit,snow_depth,snowfall,showers,rain,precipitation,precipitation_probability,apparent_temperature,dew_point_2m,relative_humidity_2m,temperature_2m&current=temperature_2m,relative_humidity_2m,is_day,apparent_temperature,precipitation,rain,showers,snowfall,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&forecast_days=3`)
-            console.log("tereeday data", threeday.data)
-            const avgdata = threeday.data
-            const tempAvg = avg(avgdata.hourly.temperature_2m, 0, 72)
-            const humidityAvg = avg(avgdata.hourly.relative_humidity_2m, 0, 72)
-            const rainSum = avgdata.hourly.precipitation.slice(0, 72).reduce((a: any, b: any) => a + b)
-            const windAvg = avg(avgdata.hourly.wind_speed_10m, 0, 72)
-            const cloudAvg = avg(avgdata.hourly.cloud_cover, 0, 72)
-            const soilAvg = avg(avgdata.hourly.soil_moisture_0_to_1cm, 0, 72);
-            console.log("avg data", tempAvg, humidityAvg, rainSum, windAvg, cloudAvg, soilAvg)
+            const threeday = res.data.forecast.forecastday
+            console.log("threeday data", threeday)
+
+            const avgdata = threeday
+            const hours = [
+                ...threeday?.[0]?.hour,
+                ...threeday?.[1]?.hour,
+                ...threeday?.[2]?.hour
+            ]
+
+            // convert to arrays
+            const tempArr = hours.map((h: any) => h.temp_c)
+            const humidityArr = hours.map((h: any) => h.humidity)
+            const rainArr = hours.map((h: any) => h.precip_mm)
+            const windArr = hours.map((h: any) => h.wind_kph)
+            const cloudArr = hours.map((h: any) => h.cloud)
+            const dewArr = hours.map((h: any) => h.dewpoint_c)
+
+            // averages
+            const tempAvg = avg(tempArr, 0, 72)
+            const humidityAvg = avg(humidityArr, 0, 72)
+            const rainSum = rainArr.slice(0, 72).reduce((a: any, b: any) => a + b, 0)
+            const windAvg = avg(windArr, 0, 72)
+            const cloudAvg = avg(cloudArr, 0, 72)
+
+            // soil not available → set default
+            const soilAvg = 0.15
+
+            console.log("avg data", tempAvg, humidityAvg, rainSum, windAvg, cloudAvg)
             let score = 0
 
             // Temperature
@@ -413,25 +436,25 @@ function Monitoring(): JSX.Element {
             else if (maxScore >= 40) overallRisk = "Medium"
             console.log(overallRisk)
 
-            const prepareTempData = (dataRes: any) => {
-                const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-                const weeklyTemp = []
-                for (let i = 0; i < 168; i += 24) {
-                    const temp = dataRes.hourly.temperature_2m.slice(i, i + 24)
-                    const avgTemp = temp.reduce((a: any, b: any) => a + b, 0) / temp.length
-                    weeklyTemp.push({
-                        day: days[i / 24],
-                        temperature: avgTemp.toFixed(1)
-                    })
+            // Temperature Graph (WeatherAPI)
 
-                }
+            const prepareTempData = (threeday: any) => {
 
+                return threeday.map((day: any, index: number) => ({
 
+                    day: ["Today", "Tomorrow", "Day3"][index],
 
-                return weeklyTemp
+                    temperature: day.day.avgtemp_c
+
+                }))
 
             }
-            setTempData(prepareTempData(data));
+
+            setTempData(prepareTempData(threeday))
+
+
+            // Rain Alert
+
             const getRainAlert = (rainProb: number) => {
 
                 if (rainProb >= 80) {
@@ -463,48 +486,57 @@ function Monitoring(): JSX.Element {
                 }
 
             }
-            getRainAlert(data.hourly.precipitation[0])
-            const dailyRain = []
 
-            for (let i = 0; i < 168; i += 24) {
-                const day: any = data.hourly.precipitation.slice(i, i + 24)
-                const avg = day.reduce((a: number, b: number) => a + b, 0)
-                dailyRain.push(avg)
-            }
-            const dataGraph = [
-                { day: "Mon", rain: dailyRain[0] },
-                { day: "Tue", rain: dailyRain[1] },
-                { day: "Wed", rain: dailyRain[2] },
-                { day: "Thu", rain: dailyRain[3] },
-                { day: "Fri", rain: dailyRain[4] },
-                { day: "Sat", rain: dailyRain[5] },
-                { day: "Sun", rain: dailyRain[6] },
-            ];
+
+            // Rain Graph
+
+            const dataGraph = threeday.map((day: any, index: number) => ({
+
+                day: ["Today", "Tomorrow", "Day3"][index],
+
+                rain: day.day.totalprecip_mm
+
+            }))
+
             setdatagraphs(dataGraph)
-            console.log(dailyRain)
-            const current = res.data.current;
-            const soil = res.data.hourly.soil_moisture_9_to_27cm[0];
-            settemp(current.temperature_2m);
-            sethumidity(current.relative_humidity_2m)
-            setsoilmoiz(soil);
-            setrainprob(data.hourly.precipitation[0]);
-            setwindspeed(current.wind_speed_10m);
-            setcloudcover(current.cloud_cover);
-            const day = () => {
-                const day = current.is_day;
-                if (day) {
-                    setdaysts("Day");
-                }
-                else
-                    setdaysts("Night");
+
+            getRainAlert(rainSum)
+
+            const current = res.data?.current;
+            console.log("abc", current);
+
+            console.log("CURRENT WEATHER:", current)
+
+            if (!current) {
+                console.log("No current weather data");
+                return;
             }
-            day();
-            setdewpoint(res.data.hourly.dew_point_2m[0]);
+
+            // weatherapi doesn't provide soil moisture
+            const soil = 0.15;
+
+            settemp(current.temp_c);
+            sethumidity(current.humidity);
+            setsoilmoiz(soil);
+
+            setrainprob(current.precip_mm);
+            setwindspeed(current.wind_kph);
+            setcloudcover(current.cloud);
+
+            setdewpoint(current.dewpoint_c);
+
+            if (current.is_day) {
+                setdaysts("Day")
+            } else {
+                setdaysts("Night")
+            }
+
             getWaterAlert(
                 soil,
-                data.hourly.precipitation[0],
-                current.temperature_2m
-            )
+                current.precip_mm,
+                current.temp_c
+            );
+            console.log("FULL WEATHER RESPONSE", res.data)
 
         }
         catch (error) {
@@ -512,10 +544,10 @@ function Monitoring(): JSX.Element {
         }
     }
     useEffect(() => {
-        console.log("farmdata:", farmdata)
-        if (farmdata.length > 0) {
-            fetchtemp()
-        }
+
+        if (!farmdata?.[0]?.latitude || !farmdata?.[0]?.longitude) return;
+
+        fetchtemp()
 
     }, [farmdata])
     const diseaseFertilizer: any = {
@@ -648,7 +680,7 @@ function Monitoring(): JSX.Element {
 
         console.log("alert function called")
 
-        if (!farmdata[0] || diseases.length === 0) return
+        if (!farmdata?.[0] || diseases.length === 0) return
 
         const diseaseMsg = diseases
             .map((d: any) => `${d.name} (${d.score}%)`)
@@ -664,7 +696,7 @@ Check field immediately and apply recommended treatment.`
         try {
 
             const res = await axios.post("http://localhost:5000/sent-alert", {
-                phone: farmdata[0].mobile,
+                phone: farmdata?.[0]?.mobile,
                 message: message
             })
 
@@ -680,8 +712,8 @@ Check field immediately and apply recommended treatment.`
     useEffect(() => {
 
         if (
-            farmdata.length > 0 &&
-            diseases.length > 0
+            farmdata?.length > 0 &&
+            diseases?.length > 0
         ) {
             console.log("Sending SMS now")
             sentalert()
@@ -818,23 +850,25 @@ Check field immediately and apply recommended treatment.`
                         <div className="info_cards">
                             <div className="info_card">
                                 <p className="info_p">{text.farmNameh}</p>
-                                <h3 className="info_h3">{farmdata[0]?.farmName}</h3>
+                                <h3 className="info_h3">{farmdata?.[0]?.farmName}</h3>
                             </div>
                             <div className="info_card">
                                 <p className="info_p">{text.farmerName}</p>
-                                <h3 className="info_h3">{farmdata[0]?.farmerName}</h3>
+                                <h3 className="info_h3">{farmdata?.[0]?.farmerName}</h3>
                             </div>
                             <div className="info_card">
                                 <p className="info_p">{text.soilType}</p>
-                                <h3 className="info_h3">{farmdata[0]?.soilType}</h3>
+                                <h3 className="info_h3">{farmdata?.[0]?.soilType}</h3>
                             </div>
                             <div className="info_card">
                                 <p className="info_p">{text.farmSize}</p>
-                                <h3 className="info_h3">{farmdata[0]?.farmSize}</h3>
+                                <h3 className="info_h3">{farmdata?.[0]?.farmSize}</h3>
                             </div>
                             <div className="info_card">
                                 <p className="info_p">{text.createdDate}</p>
-                                <h3 className="info_h3">{new Date(farmdata[0]?.plantingDate).toDateString()}</h3>
+                                <h3 className="info_h3">{farmdata?.[0]?.plantingDate
+                                    ? new Date(farmdata[0].plantingDate).toDateString()
+                                    : "-"}</h3>
                             </div>
                         </div>
                     </div>
