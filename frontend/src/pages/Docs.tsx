@@ -12,7 +12,6 @@ import { useContext } from "react";
 import { Langcontext } from "@/App";
 import { docsTranslations } from "@/Locales/Docslang";
 import Footer from "@/components/Footer";
-import projectreport from "@/docs/project_report.pdf";
 function Docs(): JSX.Element {
     const lang = useContext(Langcontext);
     const text = docsTranslations[lang.translation]
