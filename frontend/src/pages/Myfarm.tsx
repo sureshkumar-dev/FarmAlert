@@ -1,4 +1,3 @@
-import navLogo from "@/assets/crop_logo.png";
 import Nav from "@/components/Nav";
 import logo1 from "@/assets/farm_logo.png";
 import logo2 from "@/assets/green_leaf_logo.png";
@@ -8,11 +7,9 @@ import { Langcontext } from "@/App";
 import { Langdata } from "@/Locales/language";
 import "@/styles/Myfarm_overlay.css"
 import type { JSX } from "react";
-import { useNavigate } from "react-router-dom";
 function Myfarm(): JSX.Element {
     const lang = useContext(Langcontext)
     const text = Langdata[lang.translation]
-    const navigate = useNavigate();
     return (
         <>
             <Nav/>

@@ -5,7 +5,6 @@ import Home from "@/pages/Home";
 import Authentication from "@/components/Authentication";
 import AccContainer from "@/components/acc_container";
 import Monitoring from "@/pages/Monitoring";
-import AuthMobile from "@/components/AuthMobile";
 import Myfarm from "@/pages/Myfarm";
 import FarmDashboard from "@/pages/Farm_dashboard";
 import RegFarm from "@/pages/RegFarm";
@@ -23,7 +22,7 @@ type Language = "en" | "ta"
 export const Langcontext = createContext<context>({ translation: "en", toggle: () => {} })
 
 function App():JSX.Element{
-  const {id} = useParams(); 
+  
   const[translation,settranslation] = useState<Language>("en")
   function toggle():void{
     settranslation(translation === "en"? "ta" : "en")

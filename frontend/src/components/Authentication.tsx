@@ -28,6 +28,8 @@ const Authentication = (): JSX.Element => {
     const [errormsg, seterrormsg] = useState<string>("")
     const [dash_name, setdash_name] = useState("");
 const handlesubmit = async () => {
+    console.log(dash_name);
+    
     console.log("click working");
     if (!username || !email || !pwd || !conpwd ) {
         alert("please fill all fields");

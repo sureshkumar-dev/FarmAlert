@@ -58,7 +58,6 @@ function Monitoring(): JSX.Element {
     const [datagraphs, setdatagraphs] = useState<any>();
     const [tempData, setTempData] = useState<any>();
     const [data, setdata] = useState<any>();
-    const [disease, setdisease] = useState<string>();
     const [diseases, setdiseases] = useState<any[]>([])
     const [rainAlert, setRainAlert] = useState({
         level: "",
@@ -140,7 +139,6 @@ function Monitoring(): JSX.Element {
             const resair = await axios.get(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lan}&current=us_aqi,pm2_5,pm10,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone,dust`)
             console.log(resair.data)
             setdata(resair.data)
-            const data = res.data;
             const avg = (arr: any, start: any, end: any) => {
                 const slice = arr.slice(start, end)
                 return slice.reduce((a: any, b: any) => a + b, 0) / slice.length
@@ -148,7 +146,6 @@ function Monitoring(): JSX.Element {
             const threeday = res.data.forecast.forecastday
             console.log("threeday data", threeday)
 
-            const avgdata = threeday
             const hours = [
                 ...threeday?.[0]?.hour,
                 ...threeday?.[1]?.hour,
@@ -161,7 +158,6 @@ function Monitoring(): JSX.Element {
             const rainArr = hours.map((h: any) => h.precip_mm)
             const windArr = hours.map((h: any) => h.wind_kph)
             const cloudArr = hours.map((h: any) => h.cloud)
-            const dewArr = hours.map((h: any) => h.dewpoint_c)
 
             // averages
             const tempAvg = avg(tempArr, 0, 72)

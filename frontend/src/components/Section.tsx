@@ -9,11 +9,9 @@ import Button_primary from "@/components/Button_primary";
 import { useContext } from "react";
 import { Langcontext } from "@/App";
 import { Langdata } from "@/Locales/language";
-import { useNavigate } from "react-router-dom";
 
 
 function Section(): JSX.Element {
-    const navigate = useNavigate();
     const mozhi = useContext(Langcontext)
     const text = Langdata[mozhi.translation]
     return (

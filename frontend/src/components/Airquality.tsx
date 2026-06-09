@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+
 import "@/styles/AirQuality.css";
-import { useState } from "react";
-import axios from "axios";
+
 
 interface AirQualityProps {
     data?: {

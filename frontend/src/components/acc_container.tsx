@@ -1,4 +1,4 @@
-import { useEffect, useState, type JSX } from "react";
+import { useEffect } from "react";
 import "@/styles/acc_container.css";
 import Nav from "@/components/Nav";
 import userlogo from "@/assets/user.png"

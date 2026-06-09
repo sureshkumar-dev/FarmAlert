@@ -35,6 +35,8 @@ function FarmDashboard(): JSX.Element {
         settotalcrops(totalUnique)
         const totalhealth = farmdata.length;
         sethealthycrops(totalhealth)
+        console.log(name,setname,setriskcrops);
+        
     }, [farmdata])
     const fetchuser = async () => {
         const user_name = await axios.get("http://localhost:5000/api/profile", {
@@ -42,6 +44,8 @@ function FarmDashboard(): JSX.Element {
                 authorization: `Bearer ${localStorage.getItem("token")}`
             }
         })
+        console.log(user_name);
+        
 
 
     }

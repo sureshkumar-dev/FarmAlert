@@ -11,7 +11,6 @@ import plantlogo from "@/assets/local_florist_30dp.png";
 import waterlogo from "@/assets/water_drops_30dp.png";
 import droplogo from "@/assets/stat_minus_1_35dp_.png";
 import FarmMap from "@/components/satelitemap";
-import { tanjoreData } from "@/Locales/tanjoreData";
 import { districtData } from "@/Locales/districtdata";
 import axios from "axios";
 
