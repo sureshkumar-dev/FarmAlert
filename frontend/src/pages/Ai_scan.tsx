@@ -12,6 +12,7 @@ import { scantranslations } from "@/Locales/scanlang";
 import Nav from "@/components/Nav";
 
 function Aiscan(): JSX.Element {
+  const API = import.meta.env.VITE_API_URL;
   const lang = useContext(Langcontext);
   const text = scantranslations[lang.translation];
 
@@ -41,7 +42,7 @@ function Aiscan(): JSX.Element {
     formData.append("crop", selectedCrop);
 
     try {
-      const res = await fetch("http://localhost:5000/predict", {
+      const res = await fetch(`${API}/predict`, {
         method: "POST",
         body: formData,
       });

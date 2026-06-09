@@ -15,6 +15,7 @@ import { districtData } from "@/Locales/districtdata";
 import axios from "axios";
 
 function RegFarm(): JSX.Element {
+  const API = import.meta.env.VITE_API_URL
   const navigate = useNavigate();
   const lang = useContext(Langcontext);
   const text = translations[lang.translation];
@@ -105,7 +106,7 @@ function RegFarm(): JSX.Element {
     console.log("Saved farm:", farm)
     const token = localStorage.getItem("token")
     try {
-      await axios.post("http://localhost:5000/farm/register", farm, {
+      await axios.post(`${API}/farm/register`, farm, {
         headers: {
           authorization: `Bearer ${token}`
         }

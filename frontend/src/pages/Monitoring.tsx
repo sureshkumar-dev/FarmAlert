@@ -43,6 +43,7 @@ import axios from "axios";
 
 
 function Monitoring(): JSX.Element {
+    const API = import.meta.env.VITE_API_URL
     const { id } = useParams();
     const lang = useContext(Langcontext);
     const text = Monitorlang[lang.translation];
@@ -72,7 +73,7 @@ function Monitoring(): JSX.Element {
     const fetchdetail = async () => {
         const token = localStorage.getItem("token");
         try {
-            const res = await axios.get(`http://localhost:5000/farm/monitor/${id}`, {
+            const res = await axios.get(`${API}/farm/monitor/${id}`, {
                 headers: {
                     authorization: `Bearer ${token}`
                 }
@@ -136,7 +137,7 @@ function Monitoring(): JSX.Element {
 
             console.log("LAT:", lat)
             console.log("LON:", lan)
-            const res = await axios.get(`http://localhost:5000/weather?lat=${lat}&lon=${lan}`)
+            const res = await axios.get(`${API}/weather?lat=${lat}&lon=${lan}`)
             console.log(res.data)
             const resair = await axios.get(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lan}&current=us_aqi,pm2_5,pm10,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone,dust`)
             console.log(resair.data)
@@ -693,7 +694,7 @@ Check field immediately and apply recommended treatment.`
 
         try {
 
-            const res = await axios.post("http://localhost:5000/sent-alert", {
+            const res = await axios.post(`${API}/sent-alert`, {
                 phone: farmdata?.[0]?.mobile,
                 message: message
             })

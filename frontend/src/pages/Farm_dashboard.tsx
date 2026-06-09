@@ -17,6 +17,7 @@ import { Langcontext } from "@/App";
 import { Farmlang } from "@/Locales/Myfarmlang";
 import { useNavigate } from "react-router-dom";
 
+const API = import.meta.env.VITE_API_URL;
 
 function FarmDashboard(): JSX.Element {
     const navigate = useNavigate();
@@ -28,6 +29,7 @@ function FarmDashboard(): JSX.Element {
     const [farmdata, setfarmdata] = useState<any[]>([]);
     const lang = useContext(Langcontext);
     const text = Farmlang[lang.translation]
+
     useEffect(() => {
         settotalfarms(farmdata.length)
         const unique = new Set(farmdata.map(f => f.cropName));
@@ -38,17 +40,16 @@ function FarmDashboard(): JSX.Element {
         console.log(name,setname,setriskcrops);
         
     }, [farmdata])
+
     const fetchuser = async () => {
-        const user_name = await axios.get("http://localhost:5000/api/profile", {
+        const user_name = await axios.get(`${API}/api/profile`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem("token")}`
             }
         })
         console.log(user_name);
-        
-
-
     }
+
     const fetchfarm = async () => {
         try {
             console.log("FETCH START");
@@ -56,39 +57,40 @@ function FarmDashboard(): JSX.Element {
             const token = localStorage.getItem("token");
             console.log("TOKEN:", token);
 
-            const res = await axios.get("http://localhost:5000/farm/all", {
+            const res = await axios.get(`${API}/farm/all`, {
                 headers: {
                     authorization: `Bearer ${token}`
                 }
             });
             setfarmdata(res.data.data)
             console.log(res.data)
-
-
-
         } catch (err) {
             console.log("ERROR:", err);
         }
     }
+
     useEffect(() => {
         console.log("useeffect running");
         fetchuser();
         fetchfarm();
     }, []);
+
     const deleteFarm = async (id: string) => {
         try {
             const delmsg = window.confirm("Are you sure you want to delete this farm?");
             if (!delmsg) {
                 return;
             }
-            await axios.delete(`http://localhost:5000/farm/delete/${id}`);
+            await axios.delete(`${API}/farm/delete/${id}`);
             setfarmdata(prev => prev.filter(farm => farm._id !== id));
         } catch (err) {
             console.log(err);
         }
     }
+
     const uname = localStorage.getItem("uname");
     console.log(uname);
+
     return (
         <>
             <Nav />
@@ -99,7 +101,6 @@ function FarmDashboard(): JSX.Element {
                         <h1>{uname}</h1>
                     </div>
                     <div className="QuickSec">
-
                         <h2 style={{ float: "left", fontWeight: "500" }}>{text.quickAction}</h2>
                         <div style={{ display: "flex", columnGap: "20px", paddingTop: "20px" }}>
                             <button onClick={() => { navigate("/reg-farm") }} className="btn-quick-1"><img src={addlogo} alt="add" />{text.registerNewFarm}</button>
@@ -165,7 +166,6 @@ function FarmDashboard(): JSX.Element {
                                                 <h4>{text.plantingDate}</h4>
                                                 <h5>{new Date(farm.plantingDate).toLocaleDateString()}</h5>
                                             </div>
-
                                         </div>
                                         <center>
                                             <div className="dn_btn">
@@ -176,9 +176,7 @@ function FarmDashboard(): JSX.Element {
                                     </div>
                                 </div>
                             )
-                        }
-
-                        )}
+                        })}
                     </div>
                 </div>
             </section >

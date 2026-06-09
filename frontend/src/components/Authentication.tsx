@@ -13,6 +13,7 @@ import Button_primary from "./Button_primary"
 import { useNavigate } from "react-router-dom"
 
 const Authentication = (): JSX.Element => {
+    const API = import.meta.env.VITE_API_URL
     const navigate = useNavigate();
     const lang = useContext(Langcontext)
     const text = Langdata[lang.translation]
@@ -36,7 +37,7 @@ const handlesubmit = async () => {
         return;
     }
     try {
-        await axios.post("http://localhost:5000/auth/signup", {
+        await axios.post(`${API}/auth/signup`, {
             username,
             email,
             pwd
@@ -65,7 +66,7 @@ const handlesignup = async () => {
         pwd: password
     }
     try {
-        await axios.post("http://localhost:5000/auth/signin", signupdata)
+        await axios.post(`${API}/auth/signin`, signupdata)
             .then(() => {
 
                 console.log("login hit")
@@ -80,7 +81,7 @@ const handlesignup = async () => {
         alert(error);
     }
     setLoading(false)
-    const response = await axios.post("http://localhost:5000/auth/signin", signupdata);
+    const response = await axios.post(`${API}/auth/signin`, signupdata);
     console.log(response.data);
     seterrormsg(response.data.message);
     if (response.data.message == "login success") {
@@ -91,7 +92,7 @@ const handlesignup = async () => {
 
     console.log(token)
     localStorage.setItem("token", token);
-    const user_name = await axios.get("http://localhost:5000/api/profile", {
+    const user_name = await axios.get("${API}/api/profile", {
         headers: {
             authorization: `Bearer ${localStorage.getItem("token")}`
         }

@@ -5,11 +5,12 @@ import userlogo from "@/assets/user.png"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const acc_container = () => {
+    const API = import.meta.env.VITE_API_URL
     const navigate = useNavigate();
     const fetchuser = async () => {
         try {
             const token = localStorage.getItem("token")
-            const res = await axios.get("http://localhost:5000/api/profile", {
+            const res = await axios.get(`${API}/api/profile`, {
                 headers: {
                     authorization: `Bearer ${token}`
                 }
