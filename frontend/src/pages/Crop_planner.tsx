@@ -6,7 +6,6 @@ import { Langcontext } from "@/App";
 import { cropPlannerTranslations } from "@/Locales/plannerlang";
 import droplogo from "@/assets/stat_minus_1_35dp_.png";
 import starlogo from "@/assets/event_available_45dp_.png";
-const API = import.meta.env.VITE_API_URL;
 
 function CropPlanner(): JSX.Element {
   const lang = useContext(Langcontext);
