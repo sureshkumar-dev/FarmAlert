@@ -94,6 +94,8 @@ function Monitoring(): JSX.Element {
                 level: "High",
                 msg: "Soil moisture very low. Immediate irrigation required."
             })
+            console.log(temp);
+            
         }
 
         else if (soil <= 0.15 && rain <= 3) {

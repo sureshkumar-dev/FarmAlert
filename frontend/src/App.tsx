@@ -12,7 +12,6 @@ import Aiscan from "@/pages/Ai_scan";
 import CropPlanner from "@/pages/Crop_planner";
 import Docs from "@/pages/Docs";
 import NotFound from "./pages/Not_found";
-import { useParams } from "react-router-dom";
 import  { createContext, useState } from "react";
 interface context{
   translation:Language,
