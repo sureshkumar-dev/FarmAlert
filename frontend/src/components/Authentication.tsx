@@ -92,7 +92,7 @@ const handlesignup = async () => {
 
     console.log(token)
     localStorage.setItem("token", token);
-    const user_name = await axios.get("${API}/api/profile", {
+    const user_name = await axios.get(`${API}/api/profile`, {
         headers: {
             authorization: `Bearer ${localStorage.getItem("token")}`
         }
